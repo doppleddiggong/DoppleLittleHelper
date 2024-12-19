@@ -1,2 +1,1 @@
-# DoppleHelper
-Unity Developer Helper
+dopple - little-helper
