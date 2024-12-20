@@ -1,6 +1,6 @@
 {
     "name": "com.dopple.dopple-little-helper",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "displayName": "Dopple Little Helper",
     "description": "A helper tool for Unity",
     "unity": "6000.0",
@@ -16,10 +16,10 @@
       "url": "https://github.com/doppleddiggong/DoppleLittleHelper.git"
     },
     "keywords": [
-      "upm",
-      "git",
-      "editor"
+      "editor",
+	  "unity",
+	  "assets"
     ],
     "type": "tool",
     "license": "MIT"
-  }
+}

@@ -6,7 +6,6 @@ namespace DoppleLittleHelper
     public static class ToolbarStyles
     {
         public static readonly GUIStyle commandButtonStyle;
-        private const string IconPath = "Packages/com.dopple.dopple-little-helper/Texture/Icon_Shape/";
 
         static ToolbarStyles()
         {
@@ -24,17 +23,18 @@ namespace DoppleLittleHelper
         /// </summary>
         /// <param name="fileName">아이콘 파일 이름 (확장자 제외)</param>
         /// <returns>로드된 Texture 객체 (없으면 null)</returns>
-        public static Texture GetEditorIcon(string fileName)
+        public static Texture GetEditorIcon(string file_name)
         {
-            string fullPath = $"{IconPath}{fileName}.png";
+            string IconPath = DefineData.ToolbarIconPath(file_name);
 
-            if (System.IO.File.Exists(fullPath) == false)
+            if (System.IO.File.Exists(IconPath) == false)
             {
+                // Very Loud, SILENCE
                 //Debug.LogWarning($"Icon file not found at path:{fullPath}");
                 return EditorGUIUtility.IconContent("d_UnityEditor.SceneView").image;
             }
 
-            return EditorGUIUtility.Load(fullPath) as Texture;
+            return EditorGUIUtility.Load(IconPath) as Texture;
         }
     }
 }
