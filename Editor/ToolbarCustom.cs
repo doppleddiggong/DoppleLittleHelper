@@ -58,27 +58,39 @@ namespace DoppleLittleHelper.Editor
                     () => System.Diagnostics.Process.Start(Application.persistentDataPath)
                 ),
 
-                new ToolbarButtonData( "shape_046", "Open Editor.Log",
-                    () => {
+                 new ToolbarButtonData( "shape_046", "Open Editor.Log",
+                    () => 
+                    {
                         string editorLogPath = GetEditorLogPath();
-                        if (string.IsNullOrEmpty(editorLogPath))
-                            Debug.LogError("Editor.log path is empty or invalid.");
+                        if (string.IsNullOrEmpty(editorLogPath) == false)
+                            System.Diagnostics.Process.Start(editorLogPath);
                         else
-                            Debug.Log("Path is empty");
+                            Debug.LogError("Editor.log path is empty or invalid.");
 
                         // Editor log 경로를 반환하는 메서드
-                        static string GetEditorLogPath()
-                        {
-                            #if UNITY_EDITOR_WIN
-                                return FileHelper.CombinePaths( 
-                                    System.Environment.GetEnvironmentVariable("AppData"), "..", "Local", "Unity", "Editor", "Editor.log");
-                            #else
-                                Debug.Log("Editor.Log path is not supported on this platform.");
-                                return string.Empty;
-                            #endif
+                        static string GetEditorLogPath() {
+                            if (System.Environment.OSVersion.Platform == System.PlatformID.Win32NT)
+                                return System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), "Unity", "Editor", "Editor.log");
+                            else if (System.Environment.OSVersion.Platform == System.PlatformID.Unix)
+                                return System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), ".config", "unity3d", "Editor.log");
+                            else if (System.Environment.OSVersion.Platform == System.PlatformID.MacOSX)
+                                return System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "Library", "Logs", "Unity", "Editor.log");
+                            return string.Empty;
                         }
-                    }
-                )
+                    }),
+
+                    new ToolbarButtonData( "shape_038", "Open ScriptTemplates",
+                        () => 
+                        {
+                            string scriptTemplatePath = GetScriptTemplatesPath();
+                            if (string.IsNullOrEmpty(scriptTemplatePath) == false)
+                                System.Diagnostics.Process.Start(scriptTemplatePath);
+                            else
+                                Debug.LogError("ScriptTemplates path is empty or invalid.");
+
+                            static string GetScriptTemplatesPath()
+                                => System.IO.Path.Combine(System.IO.Path.GetDirectoryName(EditorApplication.applicationPath), "Data", "Resources", "ScriptTemplates");
+                        }),
             };
 
             UnityToolbarExtender.ToolbarExtender.LeftToolbarGUI.Add(OnToolbarLeftGUI);
