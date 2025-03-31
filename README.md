@@ -46,6 +46,8 @@ ScriptableObject 데이터 제어를 통해 옵션을 조정해서 사용
     - Application.persistentDataPath 폴더를 열어준다
 - **Open Editor.Log**
     - Editor.Log 파일을 열어준다
+- **Open ScriptTemplates**
+    - ScriptTemplates 폴더를 열어준다
 
 ### 설치
 

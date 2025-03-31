@@ -1,9 +1,9 @@
 {
     "name": "com.dopple.dopple-little-helper",
-    "version": "0.2.0",
+    "version": "1.0.0",
     "displayName": "Dopple Little Helper",
     "description": "A helper tool for Unity",
-    "unity": "6000.0",
+    "unity": "2020.3",
     "author": 
     {
         "name" : "dopple",
